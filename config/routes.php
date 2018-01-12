@@ -43,6 +43,10 @@ use Cake\Routing\Route\DashedRoute;
  */
 Router::defaultRouteClass(DashedRoute::class);
 
+
+//Router::extensions(['json', 'xml']);
+
+
 Router::scope('/', function (RouteBuilder $routes) {
     /**
      * Here, we are connecting '/' (base path) to a controller called 'Pages',
@@ -61,8 +65,8 @@ Router::scope('/', function (RouteBuilder $routes) {
 	//add REST support
 	//https://book.cakephp.org/3.0/en/development/routing.html#resource-routes
     // Prior to 3.5.0 use `extensions()`
-    $routes->setExtensions(['json','xml']);
-    $routes->resources('words');
+	$routes->setExtensions(['json','xml']);
+    $routes->resources('Words');
 
 	
 

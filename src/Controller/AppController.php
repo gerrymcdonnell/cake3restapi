@@ -52,7 +52,7 @@ class AppController extends Controller
         //$this->loadComponent('Csrf');
     }
 	
-	
+	/*
 	public function beforeRender(Event $event)
     {
         if (!array_key_exists('_serialize', $this->viewVars) &&
@@ -60,5 +60,5 @@ class AppController extends Controller
         ) {
             $this->set('_serialize', true);
         }
-    }
+    }*/
 }

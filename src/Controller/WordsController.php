@@ -25,14 +25,15 @@ class WordsController extends AppController
      *
      * @return \Cake\Http\Response|void
      */
+
+	
     public function index()
     {
-        $this->paginate = [
-            'contain' => ['Users']
-        ];
-        $words = $this->paginate($this->Words);
-
-        $this->set(compact('words'));
+        $words = $this->Words->find('all');
+        $this->set([
+            'words' => $words,
+            '_serialize' => ['words']
+        ]);
     }
 
     /**
@@ -116,4 +117,9 @@ class WordsController extends AppController
 
         return $this->redirect(['action' => 'index']);
     }
+	
+	
+	
+	
+	
 }
