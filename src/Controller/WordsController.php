@@ -49,7 +49,12 @@ class WordsController extends AppController
             'contain' => ['Users']
         ]);
 
-        $this->set('word', $word);
+        
+        $this->set([
+            'word' => $word,
+            '_serialize' => ['word']
+        ]);
+		
     }
 
     /**
@@ -59,7 +64,7 @@ class WordsController extends AppController
      */
     public function add()
     {
-        $word = $this->Words->newEntity();
+        /*$word = $this->Words->newEntity();
         if ($this->request->is('post')) {
             $word = $this->Words->patchEntity($word, $this->request->getData());
             if ($this->Words->save($word)) {
@@ -70,7 +75,22 @@ class WordsController extends AppController
             $this->Flash->error(__('The word could not be saved. Please, try again.'));
         }
         $users = $this->Words->Users->find('list', ['limit' => 200]);
-        $this->set(compact('word', 'users'));
+        $this->set(compact('word', 'users'));*/
+		
+		
+		$word = $this->Words->newEntity($this->request->getData());
+        if ($this->Words->save($word)) {
+            $message = 'Saved';
+        } else {
+            $message = 'Error';
+        }
+        $this->set([
+            'message' => $message,
+            'word' => $word,
+            '_serialize' => ['message', 'word']
+        ]);
+		
+		
     }
 
     /**
@@ -82,7 +102,7 @@ class WordsController extends AppController
      */
     public function edit($id = null)
     {
-        $word = $this->Words->get($id, [
+        /*$word = $this->Words->get($id, [
             'contain' => []
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
@@ -95,7 +115,24 @@ class WordsController extends AppController
             $this->Flash->error(__('The word could not be saved. Please, try again.'));
         }
         $users = $this->Words->Users->find('list', ['limit' => 200]);
-        $this->set(compact('word', 'users'));
+        $this->set(compact('word', 'users'));*/
+		
+		$word = $this->Words->get($id);
+        if ($this->request->is(['post', 'put'])) {
+            $word = $this->Words->patchEntity($word, $this->request->getData());
+            if ($this->Words->save($word)) {
+                $message = 'Saved';
+            } else {
+                $message = 'Error';
+            }
+        }
+        $this->set([
+            'message' => $message,
+            '_serialize' => ['message']
+        ]);
+		
+		
+		
     }
 
     /**
@@ -105,7 +142,7 @@ class WordsController extends AppController
      * @return \Cake\Http\Response|null Redirects to index.
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-    public function delete($id = null)
+    /*public function delete($id = null)
     {
         $this->request->allowMethod(['post', 'delete']);
         $word = $this->Words->get($id);
@@ -116,7 +153,7 @@ class WordsController extends AppController
         }
 
         return $this->redirect(['action' => 'index']);
-    }
+    }*/
 	
 	
 	
