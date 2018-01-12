@@ -13,7 +13,14 @@ use App\Controller\AppController;
 class WordsController extends AppController
 {
 
-    /**
+    public function initialize()
+    {
+        parent::initialize();
+        $this->loadComponent('RequestHandler');
+    }
+	
+	
+	/**
      * Index method
      *
      * @return \Cake\Http\Response|void

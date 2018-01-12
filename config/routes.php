@@ -55,6 +55,16 @@ Router::scope('/', function (RouteBuilder $routes) {
      * ...and connect the rest of 'Pages' controller's URLs.
      */
     $routes->connect('/pages/*', ['controller' => 'Pages', 'action' => 'display']);
+	
+	
+	
+	//add REST support
+	//https://book.cakephp.org/3.0/en/development/routing.html#resource-routes
+    // Prior to 3.5.0 use `extensions()`
+    $routes->setExtensions(['json','xml']);
+    $routes->resources('words');
+
+	
 
     /**
      * Connect catchall routes for all controllers.
