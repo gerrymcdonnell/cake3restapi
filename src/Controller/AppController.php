@@ -40,25 +40,25 @@ class AppController extends Controller
     public function initialize(){
 		
         $this->loadComponent('Flash');
-        $this->loadComponent('Auth', [
-        'authorize'=> 'Controller',//added this line
-        'authenticate' => [
-            'Form' => [
-                'fields' => [
-                    'username' => 'username',
-                    'password' => 'password'
-                ]
-            ]
-        ],
-        'loginAction' => [
-            'controller' => 'Users',
-            'action' => 'login',
-            'plugin'=>false
-        ],
-        'unauthorizedRedirect' => $this->referer(),
-        'authError'=>'Authentication Error: Access Denied.'
+		
+		
+		//basic http auth
+		$this->loadComponent('Auth', [
+		'authenticate' => [
+			'Basic' => [
+				'fields' => ['username' => 'username', 'password' => 'password'],
+				'userModel' => 'Users'
+			],
+		],
+		'storage' => 'Memory',
+		'unauthorizedRedirect' => false
 		]);
+        
 
+		
+
+		
+		
 		// Allow the display action so our pages controller
 		// continues to work.
 		$this->Auth->allow(['display','my','logout']);	
