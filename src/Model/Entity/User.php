@@ -2,24 +2,18 @@
 namespace App\Model\Entity;
 
 use Cake\ORM\Entity;
+use Cake\Auth\DefaultPasswordHasher;
 
 /**
- * User Entity
+ * User Entity.
  *
  * @property int $id
  * @property string $username
  * @property string $password
- * @property string $firstname
- * @property string $lastname
- * @property string $email
  * @property string $role
- * @property string $api_key
- * @property string $digest_pass
- * @property string $ipaddress
- * @property \Cake\I18n\FrozenTime $created
- * @property \Cake\I18n\FrozenTime $modified
- *
- * @property \App\Model\Entity\Word[] $words
+ * @property \Cake\I18n\Time $created
+ * @property \Cake\I18n\Time $modified
+ * @property \App\Model\Entity\Question[] $questions
  */
 class User extends Entity
 {
@@ -34,26 +28,21 @@ class User extends Entity
      * @var array
      */
     protected $_accessible = [
-        'username' => true,
-        'password' => true,
-        'firstname' => true,
-        'lastname' => true,
-        'email' => true,
-        'role' => true,
-        'api_key' => true,
-        'digest_pass' => true,
-        'ipaddress' => true,
-        'created' => true,
-        'modified' => true,
-        'words' => true
+        '*' => true,
+        'id' => false,
     ];
 
     /**
-     * Fields that are excluded from JSON versions of the entity.
+     * Fields that are excluded from JSON an array versions of the entity.
      *
      * @var array
      */
     protected $_hidden = [
         'password'
     ];
+	
+	protected function _setPassword($password){
+        return (new DefaultPasswordHasher)->hash($password);
+    }
+	
 }

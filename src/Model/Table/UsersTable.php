@@ -1,6 +1,7 @@
 <?php
 namespace App\Model\Table;
 
+use App\Model\Entity\User;
 use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
@@ -9,17 +10,13 @@ use Cake\Validation\Validator;
 /**
  * Users Model
  *
- * @property \App\Model\Table\WordsTable|\Cake\ORM\Association\HasMany $Words
- *
- * @method \App\Model\Entity\User get($primaryKey, $options = [])
- * @method \App\Model\Entity\User newEntity($data = null, array $options = [])
- * @method \App\Model\Entity\User[] newEntities(array $data, array $options = [])
- * @method \App\Model\Entity\User|bool save(\Cake\Datasource\EntityInterface $entity, $options = [])
- * @method \App\Model\Entity\User patchEntity(\Cake\Datasource\EntityInterface $entity, array $data, array $options = [])
- * @method \App\Model\Entity\User[] patchEntities($entities, array $data, array $options = [])
- * @method \App\Model\Entity\User findOrCreate($search, callable $callback = null, $options = [])
- *
- * @mixin \Cake\ORM\Behavior\TimestampBehavior
+ * @property \Cake\ORM\Association\HasMany $Changelogs
+ * @property \Cake\ORM\Association\HasMany $Jokes
+ * @property \Cake\ORM\Association\HasMany $Questions
+ * @property \Cake\ORM\Association\HasMany $QuestionsAnswers
+ * @property \Cake\ORM\Association\HasMany $QuestionsCategories
+ * @property \Cake\ORM\Association\HasMany $Quizzes
+ * @property \Cake\ORM\Association\HasMany $QuizzesAnswers
  */
 class UsersTable extends Table
 {
@@ -34,13 +31,31 @@ class UsersTable extends Table
     {
         parent::initialize($config);
 
-        $this->setTable('users');
-        $this->setDisplayField('id');
-        $this->setPrimaryKey('id');
+        $this->table('users');
+        $this->displayField('username');
+        $this->primaryKey('id');
 
         $this->addBehavior('Timestamp');
 
-        $this->hasMany('Words', [
+        $this->hasMany('Changelogs', [
+            'foreignKey' => 'user_id'
+        ]);
+        $this->hasMany('Jokes', [
+            'foreignKey' => 'user_id'
+        ]);
+        $this->hasMany('Questions', [
+            'foreignKey' => 'user_id'
+        ]);
+        $this->hasMany('QuestionsAnswers', [
+            'foreignKey' => 'user_id'
+        ]);
+        $this->hasMany('QuestionsCategories', [
+            'foreignKey' => 'user_id'
+        ]);
+        $this->hasMany('Quizzes', [
+            'foreignKey' => 'user_id'
+        ]);
+        $this->hasMany('QuizzesAnswers', [
             'foreignKey' => 'user_id'
         ]);
     }
@@ -58,57 +73,19 @@ class UsersTable extends Table
             ->allowEmpty('id', 'create');
 
         $validator
-            ->scalar('username')
-            ->maxLength('username', 150)
             ->requirePresence('username', 'create')
             ->notEmpty('username');
 
         $validator
-            ->scalar('password')
-            ->maxLength('password', 150)
             ->requirePresence('password', 'create')
             ->notEmpty('password');
-
+		
+		/*
         $validator
-            ->scalar('firstname')
-            ->maxLength('firstname', 150)
-            ->requirePresence('firstname', 'create')
-            ->notEmpty('firstname');
-
-        $validator
-            ->scalar('lastname')
-            ->maxLength('lastname', 150)
-            ->requirePresence('lastname', 'create')
-            ->notEmpty('lastname');
-
-        $validator
-            ->email('email')
-            ->requirePresence('email', 'create')
-            ->notEmpty('email');
-
-        $validator
-            ->scalar('role')
-            ->maxLength('role', 10)
             ->requirePresence('role', 'create')
             ->notEmpty('role');
-
-        $validator
-            ->scalar('api_key')
-            ->maxLength('api_key', 32)
-            ->requirePresence('api_key', 'create')
-            ->notEmpty('api_key');
-
-        $validator
-            ->scalar('digest_pass')
-            ->requirePresence('digest_pass', 'create')
-            ->notEmpty('digest_pass');
-
-        $validator
-            ->scalar('ipaddress')
-            ->maxLength('ipaddress', 45)
-            ->requirePresence('ipaddress', 'create')
-            ->notEmpty('ipaddress');
-
+		*/
+		
         return $validator;
     }
 
@@ -122,8 +99,19 @@ class UsersTable extends Table
     public function buildRules(RulesChecker $rules)
     {
         $rules->add($rules->isUnique(['username']));
-        $rules->add($rules->isUnique(['email']));
-
         return $rules;
     }
+	
+
+	/**
+	the user loogged in is the user who owns the profile
+	profile to be viewed edited and the auth user id (logged in user)
+	**/
+	/*
+    public function isOwnedBy($edited_useridid, $loggedin_userid)
+    {
+        return $this->exists(['id' => $edited_useridid, 'id' => $loggedin_userid]);
+    }
+	*/
+	
 }

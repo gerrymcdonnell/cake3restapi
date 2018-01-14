@@ -25,7 +25,6 @@ class WordsController extends AppController
      *
      * @return \Cake\Http\Response|void
      */
-
 	
     public function index()
     {
@@ -64,20 +63,7 @@ class WordsController extends AppController
      */
     public function add()
     {
-        /*$word = $this->Words->newEntity();
-        if ($this->request->is('post')) {
-            $word = $this->Words->patchEntity($word, $this->request->getData());
-            if ($this->Words->save($word)) {
-                $this->Flash->success(__('The word has been saved.'));
-
-                return $this->redirect(['action' => 'index']);
-            }
-            $this->Flash->error(__('The word could not be saved. Please, try again.'));
-        }
-        $users = $this->Words->Users->find('list', ['limit' => 200]);
-        $this->set(compact('word', 'users'));*/
-		
-		
+	
 		$word = $this->Words->newEntity($this->request->getData());
         if ($this->Words->save($word)) {
             $message = 'Saved';
@@ -102,20 +88,6 @@ class WordsController extends AppController
      */
     public function edit($id = null)
     {
-        /*$word = $this->Words->get($id, [
-            'contain' => []
-        ]);
-        if ($this->request->is(['patch', 'post', 'put'])) {
-            $word = $this->Words->patchEntity($word, $this->request->getData());
-            if ($this->Words->save($word)) {
-                $this->Flash->success(__('The word has been saved.'));
-
-                return $this->redirect(['action' => 'index']);
-            }
-            $this->Flash->error(__('The word could not be saved. Please, try again.'));
-        }
-        $users = $this->Words->Users->find('list', ['limit' => 200]);
-        $this->set(compact('word', 'users'));*/
 		
 		$word = $this->Words->get($id);
         if ($this->request->is(['post', 'put'])) {
@@ -136,24 +108,20 @@ class WordsController extends AppController
     }
 
     /**
-     * Delete method
-     *
-     * @param string|null $id Word id.
-     * @return \Cake\Http\Response|null Redirects to index.
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
+     * Delete method REST method
      */
-    /*public function delete($id = null)
+	public function delete($id)
     {
-        $this->request->allowMethod(['post', 'delete']);
         $word = $this->Words->get($id);
-        if ($this->Words->delete($word)) {
-            $this->Flash->success(__('The word has been deleted.'));
-        } else {
-            $this->Flash->error(__('The word could not be deleted. Please, try again.'));
+        $message = 'Deleted';
+        if (!$this->Words->delete($word)) {
+            $message = 'Error';
         }
-
-        return $this->redirect(['action' => 'index']);
-    }*/
+        $this->set([
+            'message' => $message,
+            '_serialize' => ['message']
+        ]);
+    }
 	
 	
 	

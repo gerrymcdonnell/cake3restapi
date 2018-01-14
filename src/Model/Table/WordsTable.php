@@ -70,7 +70,7 @@ class WordsTable extends Table
             ->requirePresence('word_syllables', 'create')
             ->notEmpty('word_syllables');
 
-        $validator
+        /*$validator
             ->scalar('picture')
             ->maxLength('picture', 255)
             ->allowEmpty('picture');
@@ -84,7 +84,7 @@ class WordsTable extends Table
         $validator
             ->scalar('soundfile')
             ->maxLength('soundfile', 255)
-            ->allowEmpty('soundfile');
+            ->allowEmpty('soundfile');*/
 
         return $validator;
     }
