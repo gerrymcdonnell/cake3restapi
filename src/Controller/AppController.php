@@ -43,7 +43,7 @@ class AppController extends Controller
 		
 		
 		//basic http auth
-		$this->loadComponent('Auth', [
+		/*$this->loadComponent('Auth', [
 		'authenticate' => [
 			'Basic' => [
 				'fields' => ['username' => 'username', 'password' => 'password'],
@@ -52,7 +52,7 @@ class AppController extends Controller
 		],
 		'storage' => 'Memory',
 		'unauthorizedRedirect' => false
-		]);
+		]);*/
         
 
 		
@@ -61,13 +61,9 @@ class AppController extends Controller
 		
 		// Allow the display action so our pages controller
 		// continues to work.
-		$this->Auth->allow(['display','my','logout']);	
+		//$this->Auth->allow(['display','my','logout']);	
 		
-		//deny
-		//$this->Auth->deny(['view','edit','delete','index']);
-		
-		//cross site
-		//$this->loadComponent('Csrf');
+
     }
 	
 	
@@ -102,10 +98,26 @@ class AppController extends Controller
 
 
     //allow public access to index
-    public function beforeFilter(Event $event)
+    /*public function beforeFilter(Event $event)
     {
         $this->Auth->allow(['display']);
-    }
+    }*/
+	
+	
+	
+	//enable CORS
+	//https://book.cakephp.org/3.0/en/controllers/request-response.html#setting-cross-origin-request-headers-cors
+	public function beforeFilter(event $event) { //if you dont have this beforeFilter already
+		$this->response->cors($this->request)
+		->allowOrigin(['*'])
+		->allowMethods(['GET', 'POST'])
+		->allowHeaders(['X-CSRF-Token'])
+		->allowCredentials()
+		->exposeHeaders(['Link'])
+		->maxAge(300)
+		->build();
+	}
+
 	
 	
 	

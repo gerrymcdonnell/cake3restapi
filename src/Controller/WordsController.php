@@ -26,6 +26,7 @@ class WordsController extends AppController
      * @return \Cake\Http\Response|void
      */
 	
+	//problem here as json output is in an array
     public function index()
     {
         $words = $this->Words->find('all');
@@ -123,6 +124,8 @@ class WordsController extends AppController
         ]);
     }
 	
+	
+
 	
 	
 	
