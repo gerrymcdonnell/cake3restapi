@@ -16,7 +16,7 @@
         <thead>
             <tr>
                 <th scope="col"><?= $this->Paginator->sort('id') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('word') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('wordtitle') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('word_syllables') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('picture') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('picture_dir') ?></th>
@@ -31,7 +31,7 @@
             <?php foreach ($words as $word): ?>
             <tr>
                 <td><?= $this->Number->format($word->id) ?></td>
-                <td><?= h($word->word) ?></td>
+                <td><?= h($word->wordtitle) ?></td>
                 <td><?= h($word->word_syllables) ?></td>
                 <td><?= h($word->picture) ?></td>
                 <td><?= h($word->picture_dir) ?></td>

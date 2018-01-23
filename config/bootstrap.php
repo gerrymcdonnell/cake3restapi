@@ -219,3 +219,6 @@ if (Configure::read('debug')) {
 if (Configure::read('debug')) {
     Plugin::load('CakeDC/Mixer', ['bootstrap' => true, 'routes' => true]);
 }
+
+// In config/bootstrap.php
+Plugin::load('Cors', ['bootstrap' => true, 'routes' => false]);

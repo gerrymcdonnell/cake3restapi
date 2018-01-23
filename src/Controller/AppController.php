@@ -107,16 +107,16 @@ class AppController extends Controller
 	
 	//enable CORS
 	//https://book.cakephp.org/3.0/en/controllers/request-response.html#setting-cross-origin-request-headers-cors
-	public function beforeFilter(event $event) { //if you dont have this beforeFilter already
+	/*public function beforeFilter(Event $event) { 
 		$this->response->cors($this->request)
 		->allowOrigin(['*'])
-		->allowMethods(['GET', 'POST'])
+		->allowMethods(['GET', 'POST','PUT'])
 		->allowHeaders(['X-CSRF-Token'])
 		->allowCredentials()
 		->exposeHeaders(['Link'])
 		->maxAge(300)
 		->build();
-	}
+	}*/
 
 	
 	

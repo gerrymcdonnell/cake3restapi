@@ -30,10 +30,13 @@ class WordsController extends AppController
     public function index()
     {
         $words = $this->Words->find('all');
-        $this->set([
-            'words' => $words,
-            '_serialize' => ['words']
-        ]);
+		
+		// Set the view vars that have to be serialized.
+        $this->set(compact('words'));
+
+        //note the removal of [] around words
+        $this->set('_serialize', 'words');
+		
     }
 
     /**
@@ -45,14 +48,12 @@ class WordsController extends AppController
      */
     public function view($id = null)
     {
-        $word = $this->Words->get($id, [
-            'contain' => ['Users']
-        ]);
+        $word = $this->Words->get($id);
 
         
         $this->set([
             'word' => $word,
-            '_serialize' => ['word']
+            '_serialize' => 'word'
         ]);
 		
     }
@@ -96,7 +97,7 @@ class WordsController extends AppController
             if ($this->Words->save($word)) {
                 $message = 'Saved';
             } else {
-                $message = 'Error';
+                $message = 'Error: Saving updated word';
             }
         }
         $this->set([
@@ -126,7 +127,7 @@ class WordsController extends AppController
 	
 	
 
-	
+
 	
 	
 	

@@ -15,7 +15,7 @@
     <fieldset>
         <legend><?= __('Add Word') ?></legend>
         <?php
-            echo $this->Form->control('word');
+            echo $this->Form->control('wordtitle');
             echo $this->Form->control('word_syllables');
             echo $this->Form->control('picture');
             echo $this->Form->control('picture_dir');

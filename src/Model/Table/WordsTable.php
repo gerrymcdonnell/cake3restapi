@@ -58,17 +58,17 @@ class WordsTable extends Table
             ->integer('id')
             ->allowEmpty('id', 'create');
 
-        $validator
-            ->scalar('word')
+        /*$validator
+            ->scalar('wordtitle')
             ->maxLength('word', 40)
             ->requirePresence('word', 'create')
-            ->notEmpty('word');
+            ->notEmpty('word');*/
 
-        $validator
+        /*$validator
             ->scalar('word_syllables')
             ->maxLength('word_syllables', 150)
             ->requirePresence('word_syllables', 'create')
-            ->notEmpty('word_syllables');
+            ->notEmpty('word_syllables');*/
 
         /*$validator
             ->scalar('picture')
@@ -96,10 +96,10 @@ class WordsTable extends Table
      * @param \Cake\ORM\RulesChecker $rules The rules object to be modified.
      * @return \Cake\ORM\RulesChecker
      */
-    public function buildRules(RulesChecker $rules)
+    /*public function buildRules(RulesChecker $rules)
     {
         $rules->add($rules->existsIn(['user_id'], 'Users'));
 
         return $rules;
-    }
+    }*/
 }

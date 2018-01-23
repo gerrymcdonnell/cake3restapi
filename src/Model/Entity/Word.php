@@ -31,7 +31,7 @@ class Word extends Entity
      * @var array
      */
     protected $_accessible = [
-        'word' => true,
+        'wordtitle' => true,
         'word_syllables' => true,
         'picture' => true,
         'picture_dir' => true,
