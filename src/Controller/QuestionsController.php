@@ -88,7 +88,7 @@ class QuestionsController extends AppController
      *
      * @return \Cake\Http\Response|null Redirects on successful add, renders view otherwise.
      */
-    public function add()
+    /*public function add()
     {
         $question = $this->Questions->newEntity();
         if ($this->request->is('post')) {
@@ -104,7 +104,7 @@ class QuestionsController extends AppController
         $questionsCategories = $this->Questions->QuestionsCategories->find('list', ['limit' => 200]);
         $questionstypes = $this->Questions->Questionstypes->find('list', ['limit' => 200]);
         $this->set(compact('question', 'users', 'questionsCategories', 'questionstypes'));
-    }
+    }*/
 
     /**
      * Edit method
@@ -133,15 +133,14 @@ class QuestionsController extends AppController
         $this->set(compact('question', 'users', 'questionsCategories', 'questionstypes'));
     }*/
 	
-	public function edit($id = null)   {
-		
+	public function edit($id = null)   {		
 		$question = $this->Questions->get($id);
         if ($this->request->is(['post', 'put'])) {
             $question = $this->Questions->patchEntity($question, $this->request->getData());
             if ($this->Questions->save($question)) {
                 $message = 'Saved';
             } else {
-                $message = 'Error: Saving updated word';
+                $message = 'Error: Saving updated question';
             }
         }
         $this->set([
@@ -161,7 +160,7 @@ class QuestionsController extends AppController
      * @return \Cake\Http\Response|null Redirects to index.
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-    public function delete($id = null)
+    /*public function delete($id = null)
     {
         $this->request->allowMethod(['post', 'delete']);
         $question = $this->Questions->get($id);
@@ -172,5 +171,22 @@ class QuestionsController extends AppController
         }
 
         return $this->redirect(['action' => 'index']);
+    }*/
+	
+	
+	//rest
+	public function delete($id)
+    {
+        $question = $this->Questions->get($id);
+        $message = 'Deleted';
+        if (!$this->Questions->delete($question)) {
+            $message = 'Error';
+        }
+        $this->set([
+            'message' => $message,
+            '_serialize' => ['message']
+        ]);
     }
+	
+	
 }
