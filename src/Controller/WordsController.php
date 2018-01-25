@@ -88,8 +88,7 @@ class WordsController extends AppController
      * @return \Cake\Http\Response|null Redirects on successful edit, renders view otherwise.
      * @throws \Cake\Network\Exception\NotFoundException When record not found.
      */
-    public function edit($id = null)
-    {
+    public function edit($id = null)   {
 		
 		$word = $this->Words->get($id);
         if ($this->request->is(['post', 'put'])) {
@@ -103,10 +102,7 @@ class WordsController extends AppController
         $this->set([
             'message' => $message,
             '_serialize' => ['message']
-        ]);
-		
-		
-		
+        ]);		
     }
 
     /**
