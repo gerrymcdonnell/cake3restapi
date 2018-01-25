@@ -43,7 +43,7 @@ class AppController extends Controller
 		
 		
 		//basic http auth
-		/*$this->loadComponent('Auth', [
+		$this->loadComponent('Auth', [
 		'authenticate' => [
 			'Basic' => [
 				'fields' => ['username' => 'username', 'password' => 'password'],
@@ -52,7 +52,7 @@ class AppController extends Controller
 		],
 		'storage' => 'Memory',
 		'unauthorizedRedirect' => false
-		]);*/
+		]);
         
 
 		
