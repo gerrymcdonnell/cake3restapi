@@ -43,10 +43,11 @@ class QuestionsTable extends Table
 
         $this->addBehavior('Timestamp');
 
-        $this->belongsTo('Users', [
+        /*$this->belongsTo('Users', [
             'foreignKey' => 'user_id',
             'joinType' => 'INNER'
-        ]);
+        ]);*/
+		
         $this->belongsTo('QuestionsCategories', [
             'foreignKey' => 'questions_categories_id',
             'joinType' => 'INNER'
@@ -112,7 +113,7 @@ class QuestionsTable extends Table
             ->requirePresence('difficulty', 'create')
             ->notEmpty('difficulty');
 
-        $validator
+        /*$validator
             ->boolean('flag')
             ->requirePresence('flag', 'create')
             ->notEmpty('flag');
@@ -139,7 +140,7 @@ class QuestionsTable extends Table
             ->scalar('photo_type')
             ->maxLength('photo_type', 80)
             ->requirePresence('photo_type', 'create')
-            ->notEmpty('photo_type');
+            ->notEmpty('photo_type');*/
 
         return $validator;
     }
@@ -151,12 +152,12 @@ class QuestionsTable extends Table
      * @param \Cake\ORM\RulesChecker $rules The rules object to be modified.
      * @return \Cake\ORM\RulesChecker
      */
-    public function buildRules(RulesChecker $rules)
+    /*public function buildRules(RulesChecker $rules)
     {
-        $rules->add($rules->existsIn(['user_id'], 'Users'));
+        //$rules->add($rules->existsIn(['user_id'], 'Users'));
         $rules->add($rules->existsIn(['questions_categories_id'], 'QuestionsCategories'));
         $rules->add($rules->existsIn(['questionstypes_id'], 'Questionstypes'));
 
         return $rules;
-    }
+    }*/
 }

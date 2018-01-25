@@ -65,9 +65,10 @@ Router::scope('/', function (RouteBuilder $routes) {
 	//add REST support
 	//https://book.cakephp.org/3.0/en/development/routing.html#resource-routes
     // Prior to 3.5.0 use `extensions()`
-	$routes->setExtensions(['json','xml']);
-    $routes->resources('Words');
-
+	$routes->setExtensions(['json']);
+    $routes->resources('Words'
+	);
+	$routes->resources('Questions');
 	
 
     /**

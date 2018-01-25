@@ -40,6 +40,7 @@ class AppController extends Controller
     public function initialize(){
 		
         $this->loadComponent('Flash');
+		$this->loadComponent('RequestHandler');
 		
 		
 		//basic http auth
@@ -68,7 +69,7 @@ class AppController extends Controller
 	
 	
 
-    public function isAuthorized($user){
+    /*public function isAuthorized($user){
 		// Admin can access every action
 		if (isset($user['role']) && $user['role'] == 'admin') {
 			return true;
@@ -76,7 +77,7 @@ class AppController extends Controller
 
 		// Default deny
 		return false;
-    }
+    }*/
 
 
 	

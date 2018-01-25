@@ -13,11 +13,11 @@ use App\Controller\AppController;
 class QuestionsController extends AppController
 {
 
-    public function initialize()
+    /*public function initialize()
     {
         parent::initialize();
         $this->loadComponent('RequestHandler');
-    }
+    }*/
 	
 	/**
      * Index method
@@ -40,7 +40,7 @@ class QuestionsController extends AppController
 	**/
 	public function index()
     {
-        $questions = $this->Questions->find('all');
+        $questions = $this->Questions->find('all')->limit(5);
 		
 		// Set the view vars that have to be serialized.
         $this->set(compact('questions'));
@@ -71,9 +71,10 @@ class QuestionsController extends AppController
 	
     public function view($id = null){
         
-		$question = $this->Questions->get($id, [
+		$question = $this->Questions->get($id/*, 
+		[
             'contain' => ['QuestionsCategories', 'Questionstypes', 'QuestionsAnswers']
-        ]);       
+        ]*/);       
         $this->set([
             'question' => $question,
             '_serialize' => 'question'
