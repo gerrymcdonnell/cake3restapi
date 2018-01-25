@@ -105,6 +105,25 @@ class QuestionsController extends AppController
         $questionstypes = $this->Questions->Questionstypes->find('list', ['limit' => 200]);
         $this->set(compact('question', 'users', 'questionsCategories', 'questionstypes'));
     }*/
+	
+	//REST
+	public function add()
+    {	
+		$question = $this->Questions->newEntity($this->request->getData());
+        if ($this->Questions->save($question)) {
+            $message = 'Saved';
+        } else {
+            $message = 'Error';
+        }
+        $this->set([
+            'message' => $message,
+            'question' => $question,
+            '_serialize' => ['message', 'question']
+        ]);	
+    }
+	
+	
+	
 
     /**
      * Edit method

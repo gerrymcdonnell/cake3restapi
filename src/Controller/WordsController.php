@@ -64,8 +64,7 @@ class WordsController extends AppController
      * @return \Cake\Http\Response|null Redirects on successful add, renders view otherwise.
      */
     public function add()
-    {
-	
+    {	
 		$word = $this->Words->newEntity($this->request->getData());
         if ($this->Words->save($word)) {
             $message = 'Saved';
@@ -76,9 +75,7 @@ class WordsController extends AppController
             'message' => $message,
             'word' => $word,
             '_serialize' => ['message', 'word']
-        ]);
-		
-		
+        ]);	
     }
 
     /**

@@ -85,7 +85,7 @@ class QuestionsTable extends Table
             ->requirePresence('ans1', 'create')
             ->notEmpty('ans1');
 
-        $validator
+       /* $validator
             ->scalar('ans2')
             ->maxLength('ans2', 255)
             ->requirePresence('ans2', 'create')
@@ -111,7 +111,7 @@ class QuestionsTable extends Table
         $validator
             ->integer('difficulty')
             ->requirePresence('difficulty', 'create')
-            ->notEmpty('difficulty');
+            ->notEmpty('difficulty');*/
 
         /*$validator
             ->boolean('flag')
