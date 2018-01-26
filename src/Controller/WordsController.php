@@ -35,8 +35,7 @@ class WordsController extends AppController
         $this->set(compact('words'));
 
         //note the removal of [] around words
-        $this->set('_serialize', 'words');
-		
+        $this->set('_serialize', 'words');		
     }
 
     /**

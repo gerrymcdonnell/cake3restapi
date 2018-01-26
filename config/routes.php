@@ -70,6 +70,10 @@ Router::scope('/', function (RouteBuilder $routes) {
 	);
 	$routes->resources('Questions');
 	
+	$routes->resources('Quizzes');
+	
+	$routes->resources('QuestionsAnswers');
+	
 
     /**
      * Connect catchall routes for all controllers.

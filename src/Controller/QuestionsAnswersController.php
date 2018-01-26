@@ -21,12 +21,25 @@ class QuestionsAnswersController extends AppController
     public function index()
     {
         $this->paginate = [
-            'contain' => ['Questions', 'Users']
+           
         ];
         $questionsAnswers = $this->paginate($this->QuestionsAnswers);
 
         $this->set(compact('questionsAnswers'));
     }
+	
+	//json ver
+    /*public function index()
+    {
+        $questionanswers = $this->QuestionsAnswers->find('all');
+		
+		// Set the view vars that have to be serialized.
+        $this->set(compact('questionanswers'));
+
+        //note the removal of [] around questionanswers
+        $this->set('_serialize', 'questionanswers');		
+    }*/
+	
 
     /**
      * View method
@@ -65,6 +78,24 @@ class QuestionsAnswersController extends AppController
         $users = $this->QuestionsAnswers->Users->find('list', ['limit' => 200]);
         $this->set(compact('questionsAnswer', 'questions', 'users'));
     }
+	
+	/*public function add()
+    {	
+		$questionanswer = $this->QuestionAnswers->newEntity($this->request->getData());
+        if ($this->QuestionAnswers->save($questionanswer)) {
+            $message = 'Saved';
+        } else {
+            $message = 'Error';
+        }
+        $this->set([
+            'message' => $message,
+            'questionanswer' => $questionanswer,
+            '_serialize' => 'message'
+        ]);	
+    }*/
+	
+	
+	
 
     /**
      * Edit method

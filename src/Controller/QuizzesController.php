@@ -18,7 +18,7 @@ class QuizzesController extends AppController
      *
      * @return \Cake\Http\Response|void
      */
-    public function index()
+    /*public function index()
     {
         $this->paginate = [
             'contain' => 'Questions'
@@ -26,6 +26,19 @@ class QuizzesController extends AppController
         $quizzes = $this->paginate($this->Quizzes);
 
         $this->set(compact('quizzes'));
+    }*/
+	
+	
+	//new version of index
+	public function index()
+    {
+        $quizzes = $this->Quizzes->find('all');
+		
+		// Set the view vars that have to be serialized.
+        $this->set(compact('quizzes'));
+
+        //note the removal of [] around words
+        $this->set('_serialize', 'quizzes');		
     }
 
     /**
