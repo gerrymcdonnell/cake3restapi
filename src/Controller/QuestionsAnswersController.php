@@ -18,6 +18,14 @@ class QuestionsAnswersController extends AppController
      *
      * @return \Cake\Http\Response|void
      */
+	public function initialize()
+    {
+        parent::initialize();
+        $this->loadComponent('RequestHandler');
+    }
+	 
+	 
+	 
     public function index()
     {
         $this->paginate = [
@@ -62,7 +70,7 @@ class QuestionsAnswersController extends AppController
      *
      * @return \Cake\Http\Response|null Redirects on successful add, renders view otherwise.
      */
-    public function add()
+    /*public function add()
     {
         $questionsAnswer = $this->QuestionsAnswers->newEntity();
         if ($this->request->is('post')) {
@@ -74,25 +82,31 @@ class QuestionsAnswersController extends AppController
             }
             $this->Flash->error(__('The questions answer could not be saved. Please, try again.'));
         }
-        $questions = $this->QuestionsAnswers->Questions->find('list', ['limit' => 200]);
-        $users = $this->QuestionsAnswers->Users->find('list', ['limit' => 200]);
+        $questions = $this->QuestionsAnswers->Questions->find('list', ['limit' => 2]);
+        $users = $this->QuestionsAnswers->Users->find('list', ['limit' => 2]);
         $this->set(compact('questionsAnswer', 'questions', 'users'));
     }
+	*/
 	
-	/*public function add()
+	
+	public function add()
     {	
-		$questionanswer = $this->QuestionAnswers->newEntity($this->request->getData());
-        if ($this->QuestionAnswers->save($questionanswer)) {
-            $message = 'Saved';
-        } else {
-            $message = 'Error';
-        }
-        $this->set([
-            'message' => $message,
-            'questionanswer' => $questionanswer,
-            '_serialize' => 'message'
-        ]);	
-    }*/
+		if ($this->request->is('post')) {
+			$q = $this->QuestionsAnswers->newEntity($this->request->getData());
+			if ($this->QuestionsAnswers->save($q)) {
+				$message = 'Saved';
+			} else {
+				$message = 'Error';
+			}
+			$this->set([
+				'message' => $message,
+				'questionsanswer' => $q,
+				'_serialize' => ['message','questionsanswer']
+			]);	
+		}
+    }
+	
+
 	
 	
 	

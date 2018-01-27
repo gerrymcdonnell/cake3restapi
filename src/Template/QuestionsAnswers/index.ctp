@@ -32,8 +32,8 @@
             <?php foreach ($questionsAnswers as $questionsAnswer): ?>
             <tr>
                 <td><?= $this->Number->format($questionsAnswer->id) ?></td>
-                <td><?= $questionsAnswer->has('question') ? $this->Html->link($questionsAnswer->question->id, ['controller' => 'Questions', 'action' => 'view', $questionsAnswer->question->id]) : '' ?></td>
-                <td><?= $questionsAnswer->has('user') ? $this->Html->link($questionsAnswer->user->username, ['controller' => 'Users', 'action' => 'view', $questionsAnswer->user->id]) : '' ?></td>
+                <td><?= $questionsAnswer->question_id  ?></td>
+                <td><?= $questionsAnswer->user_id ?></td>
                 <td><?= $this->Number->format($questionsAnswer->answerindex) ?></td>
                 <td><?= h($questionsAnswer->created) ?></td>
                 <td><?= h($questionsAnswer->modified) ?></td>

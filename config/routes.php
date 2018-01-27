@@ -44,11 +44,26 @@ use Cake\Routing\Route\DashedRoute;
 Router::defaultRouteClass(DashedRoute::class);
 
 
-//Router::extensions(['json', 'xml']);
+Router::extensions(['json', 'xml']);
 
 
 Router::scope('/', function (RouteBuilder $routes) {
-    /**
+    
+	//$routes->setExtensions(['json'],['xml']);
+	
+	
+		//add REST support
+	//https://book.cakephp.org/3.0/en/development/routing.html#resource-routes
+    // Prior to 3.5.0 use `extensions()`
+	
+	
+	
+    $routes->resources('Words');
+	$routes->resources('Questions');	
+	$routes->resources('Quizzes');
+	$routes->resources('QuestionsAnswers');	
+	
+	/**
      * Here, we are connecting '/' (base path) to a controller called 'Pages',
      * its action called 'display', and we pass a param to select the view file
      * to use (in this case, src/Template/Pages/home.ctp)...
@@ -62,17 +77,9 @@ Router::scope('/', function (RouteBuilder $routes) {
 	
 	
 	
-	//add REST support
-	//https://book.cakephp.org/3.0/en/development/routing.html#resource-routes
-    // Prior to 3.5.0 use `extensions()`
-	$routes->setExtensions(['json']);
-    $routes->resources('Words'
-	);
-	$routes->resources('Questions');
+
 	
-	$routes->resources('Quizzes');
 	
-	$routes->resources('QuestionsAnswers');
 	
 
     /**

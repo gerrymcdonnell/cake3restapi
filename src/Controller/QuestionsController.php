@@ -208,4 +208,40 @@ class QuestionsController extends AppController
     }
 	
 	
+	
+	/**
+    return a random question
+    **/
+    public function getrandomquestion(){		
+		$question = $this->Questions->find('all')  /*,['contain' => ['Questionscategories']])	*/
+        ->order('rand()')
+        ->first();
+         
+		 $this->set([
+            'question' => $question,
+            '_serialize' => 'question'
+        ]);		
+	}
+	
+	
+
+	
+	
+	
+
+
+    /**
+        get a random question by difficulty
+    **/
+    public function getbydifficulty($diff=1){
+		
+		$result = $this->Questions->findAllByDifficulty($diff)
+        ->order('rand()')
+        ->first();     
+
+         $this->set('question', $result);
+         $this->render('debugquestion');
+    }
+	
+	
 }
