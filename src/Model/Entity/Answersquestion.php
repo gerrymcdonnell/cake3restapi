@@ -4,7 +4,7 @@ namespace App\Model\Entity;
 use Cake\ORM\Entity;
 
 /**
- * Questionsanswer Entity
+ * Answersquestion Entity
  *
  * @property int $id
  * @property int $question_id
@@ -16,7 +16,7 @@ use Cake\ORM\Entity;
  * @property \App\Model\Entity\Question $question
  * @property \App\Model\Entity\User $user
  */
-class Questionsanswer extends Entity
+class Answersquestion extends Entity
 {
 
     /**

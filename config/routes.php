@@ -44,24 +44,25 @@ use Cake\Routing\Route\DashedRoute;
 Router::defaultRouteClass(DashedRoute::class);
 
 
-Router::extensions(['json', 'xml']);
+//works
+Router::scope('/', function ($routes) {
+    // Prior to 3.5.0 use `extensions()`
+    $routes->setExtensions(['json']);
+    $routes->resources('Questionsanswers');
+	$routes->resources('Answersquestions');
+	
+	$routes->resources('Questions');
+});
 
 
 Router::scope('/', function (RouteBuilder $routes) {
     
-	//$routes->setExtensions(['json'],['xml']);
+	$routes->setExtensions(['json'],['xml']);
 	
+	//problem causing 
+	/*$routes->resources('Questionanswers');		
+	$routes->resources('Answersquestions');	*/
 	
-		//add REST support
-	//https://book.cakephp.org/3.0/en/development/routing.html#resource-routes
-    // Prior to 3.5.0 use `extensions()`
-	
-	
-	
-    $routes->resources('Words');
-	$routes->resources('Questions');	
-	$routes->resources('Quizzes');
-	$routes->resources('QuestionsAnswers');	
 	
 	/**
      * Here, we are connecting '/' (base path) to a controller called 'Pages',
@@ -74,10 +75,6 @@ Router::scope('/', function (RouteBuilder $routes) {
      * ...and connect the rest of 'Pages' controller's URLs.
      */
     $routes->connect('/pages/*', ['controller' => 'Pages', 'action' => 'display']);
-	
-	
-	
-
 	
 	
 	

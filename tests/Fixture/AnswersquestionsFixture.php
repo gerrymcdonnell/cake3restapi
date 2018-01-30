@@ -4,10 +4,10 @@ namespace App\Test\Fixture;
 use Cake\TestSuite\Fixture\TestFixture;
 
 /**
- * QuestionsanswersFixture
+ * AnswersquestionsFixture
  *
  */
-class QuestionsanswersFixture extends TestFixture
+class AnswersquestionsFixture extends TestFixture
 {
 
     /**
@@ -44,8 +44,8 @@ class QuestionsanswersFixture extends TestFixture
             'question_id' => 1,
             'user_id' => 1,
             'answerindex' => 1,
-            'created' => '2018-01-28 21:59:09',
-            'modified' => '2018-01-28 21:59:09'
+            'created' => '2018-01-28 21:54:43',
+            'modified' => '2018-01-28 21:54:43'
         ],
     ];
 }

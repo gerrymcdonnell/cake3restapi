@@ -4,13 +4,13 @@ namespace App\Controller;
 use App\Controller\AppController;
 
 /**
- * QuestionsAnswers Controller
+ * Questionsanswers Controller
  *
- * @property \App\Model\Table\QuestionsAnswersTable $QuestionsAnswers
+ * @property \App\Model\Table\QuestionsanswersTable $Questionsanswers
  *
- * @method \App\Model\Entity\QuestionsAnswer[]|\Cake\Datasource\ResultSetInterface paginate($object = null, array $settings = [])
+ * @method \App\Model\Entity\Questionsanswer[]|\Cake\Datasource\ResultSetInterface paginate($object = null, array $settings = [])
  */
-class QuestionsAnswersController extends AppController
+class QuestionsanswersController extends AppController
 {
 
     /**
@@ -18,51 +18,42 @@ class QuestionsAnswersController extends AppController
      *
      * @return \Cake\Http\Response|void
      */
-	public function initialize()
-    {
-        parent::initialize();
-        $this->loadComponent('RequestHandler');
-    }
-	 
-	 
-	 
-    public function index()
-    {
-        $this->paginate = [
-           
-        ];
-        $questionsAnswers = $this->paginate($this->QuestionsAnswers);
-
-        $this->set(compact('questionsAnswers'));
-    }
-	
-	//json ver
     /*public function index()
     {
-        $questionanswers = $this->QuestionsAnswers->find('all');
-		
-		// Set the view vars that have to be serialized.
-        $this->set(compact('questionanswers'));
+        $this->paginate = [
+            'contain' => ['Questions', 'Users']
+        ];
+        $questionsanswers = $this->paginate($this->Questionsanswers);
 
-        //note the removal of [] around questionanswers
-        $this->set('_serialize', 'questionanswers');		
+        $this->set(compact('questionsanswers'));
     }*/
+	
+	
+	
+	public function index()
+    {
+        $questionsanswers = $this->paginate($this->Questionsanswers);
+        $this->set(
+		['questionsanswers'=>$questionsanswers,
+		'_serialize'=>['questionsanswers']
+		]);	
+    }
 	
 
     /**
      * View method
      *
-     * @param string|null $id Questions Answer id.
+     * @param string|null $id Questionsanswer id.
      * @return \Cake\Http\Response|void
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
     public function view($id = null)
     {
-        $questionsAnswer = $this->QuestionsAnswers->get($id, [
+        $questionsanswer = $this->Questionsanswers->get($id, [
             'contain' => ['Questions', 'Users']
         ]);
 
-        $this->set('questionsAnswer', $questionsAnswer);
+        $this->set('questionsanswer', $questionsanswer);
     }
 
     /**
@@ -70,88 +61,64 @@ class QuestionsAnswersController extends AppController
      *
      * @return \Cake\Http\Response|null Redirects on successful add, renders view otherwise.
      */
-    /*public function add()
+    public function add()
     {
-        $questionsAnswer = $this->QuestionsAnswers->newEntity();
+        $questionsanswer = $this->Questionsanswers->newEntity();
         if ($this->request->is('post')) {
-            $questionsAnswer = $this->QuestionsAnswers->patchEntity($questionsAnswer, $this->request->getData());
-            if ($this->QuestionsAnswers->save($questionsAnswer)) {
-                $this->Flash->success(__('The questions answer has been saved.'));
+            $questionsanswer = $this->Questionsanswers->patchEntity($questionsanswer, $this->request->getData());
+            if ($this->Questionsanswers->save($questionsanswer)) {
+                $this->Flash->success(__('The questionsanswer has been saved.'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The questions answer could not be saved. Please, try again.'));
+            $this->Flash->error(__('The questionsanswer could not be saved. Please, try again.'));
         }
-        $questions = $this->QuestionsAnswers->Questions->find('list', ['limit' => 2]);
-        $users = $this->QuestionsAnswers->Users->find('list', ['limit' => 2]);
-        $this->set(compact('questionsAnswer', 'questions', 'users'));
+        $questions = $this->Questionsanswers->Questions->find('list', ['limit' => 200]);
+        $users = $this->Questionsanswers->Users->find('list', ['limit' => 200]);
+        $this->set(compact('questionsanswer', 'questions', 'users'));
     }
-	*/
-	
-	
-	public function add()
-    {	
-		if ($this->request->is('post')) {
-			$q = $this->QuestionsAnswers->newEntity($this->request->getData());
-			if ($this->QuestionsAnswers->save($q)) {
-				$message = 'Saved';
-			} else {
-				$message = 'Error';
-			}
-			$this->set([
-				'message' => $message,
-				'questionsanswer' => $q,
-				'_serialize' => ['message','questionsanswer']
-			]);	
-		}
-    }
-	
-
-	
-	
-	
 
     /**
      * Edit method
      *
-     * @param string|null $id Questions Answer id.
+     * @param string|null $id Questionsanswer id.
      * @return \Cake\Http\Response|null Redirects on successful edit, renders view otherwise.
      * @throws \Cake\Network\Exception\NotFoundException When record not found.
      */
     public function edit($id = null)
     {
-        $questionsAnswer = $this->QuestionsAnswers->get($id, [
+        $questionsanswer = $this->Questionsanswers->get($id, [
             'contain' => []
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
-            $questionsAnswer = $this->QuestionsAnswers->patchEntity($questionsAnswer, $this->request->getData());
-            if ($this->QuestionsAnswers->save($questionsAnswer)) {
-                $this->Flash->success(__('The questions answer has been saved.'));
+            $questionsanswer = $this->Questionsanswers->patchEntity($questionsanswer, $this->request->getData());
+            if ($this->Questionsanswers->save($questionsanswer)) {
+                $this->Flash->success(__('The questionsanswer has been saved.'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The questions answer could not be saved. Please, try again.'));
+            $this->Flash->error(__('The questionsanswer could not be saved. Please, try again.'));
         }
-        $questions = $this->QuestionsAnswers->Questions->find('list', ['limit' => 200]);
-        $users = $this->QuestionsAnswers->Users->find('list', ['limit' => 200]);
-        $this->set(compact('questionsAnswer', 'questions', 'users'));
+        $questions = $this->Questionsanswers->Questions->find('list', ['limit' => 200]);
+        $users = $this->Questionsanswers->Users->find('list', ['limit' => 200]);
+        $this->set(compact('questionsanswer', 'questions', 'users'));
     }
 
     /**
      * Delete method
      *
-     * @param string|null $id Questions Answer id.
+     * @param string|null $id Questionsanswer id.
      * @return \Cake\Http\Response|null Redirects to index.
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
     public function delete($id = null)
     {
         $this->request->allowMethod(['post', 'delete']);
-        $questionsAnswer = $this->QuestionsAnswers->get($id);
-        if ($this->QuestionsAnswers->delete($questionsAnswer)) {
-            $this->Flash->success(__('The questions answer has been deleted.'));
+        $questionsanswer = $this->Questionsanswers->get($id);
+        if ($this->Questionsanswers->delete($questionsanswer)) {
+            $this->Flash->success(__('The questionsanswer has been deleted.'));
         } else {
-            $this->Flash->error(__('The questions answer could not be deleted. Please, try again.'));
+            $this->Flash->error(__('The questionsanswer could not be deleted. Please, try again.'));
         }
 
         return $this->redirect(['action' => 'index']);

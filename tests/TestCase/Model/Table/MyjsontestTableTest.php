@@ -1,22 +1,22 @@
 <?php
 namespace App\Test\TestCase\Model\Table;
 
-use App\Model\Table\QuestionsanswersTable;
+use App\Model\Table\MyjsontestTable;
 use Cake\ORM\TableRegistry;
 use Cake\TestSuite\TestCase;
 
 /**
- * App\Model\Table\QuestionsanswersTable Test Case
+ * App\Model\Table\MyjsontestTable Test Case
  */
-class QuestionsanswersTableTest extends TestCase
+class MyjsontestTableTest extends TestCase
 {
 
     /**
      * Test subject
      *
-     * @var \App\Model\Table\QuestionsanswersTable
+     * @var \App\Model\Table\MyjsontestTable
      */
-    public $Questionsanswers;
+    public $Myjsontest;
 
     /**
      * Fixtures
@@ -24,18 +24,18 @@ class QuestionsanswersTableTest extends TestCase
      * @var array
      */
     public $fixtures = [
-        'app.questionsanswers',
-        'app.questions',
-        'app.questions_categories',
+        'app.myjsontest',
         'app.users',
         'app.changelogs',
         'app.jokes',
+        'app.questions',
+        'app.questions_categories',
+        'app.questionstypes',
         'app.questions_answers',
         'app.quizzes',
         'app.quizzes_answers',
         'app.quizzes_results',
-        'app.quizzes_questions',
-        'app.questionstypes'
+        'app.quizzes_questions'
     ];
 
     /**
@@ -46,8 +46,8 @@ class QuestionsanswersTableTest extends TestCase
     public function setUp()
     {
         parent::setUp();
-        $config = TableRegistry::exists('Questionsanswers') ? [] : ['className' => QuestionsanswersTable::class];
-        $this->Questionsanswers = TableRegistry::get('Questionsanswers', $config);
+        $config = TableRegistry::exists('Myjsontest') ? [] : ['className' => MyjsontestTable::class];
+        $this->Myjsontest = TableRegistry::get('Myjsontest', $config);
     }
 
     /**
@@ -57,7 +57,7 @@ class QuestionsanswersTableTest extends TestCase
      */
     public function tearDown()
     {
-        unset($this->Questionsanswers);
+        unset($this->Myjsontest);
 
         parent::tearDown();
     }

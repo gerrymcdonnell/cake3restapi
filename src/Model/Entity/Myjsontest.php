@@ -4,19 +4,18 @@ namespace App\Model\Entity;
 use Cake\ORM\Entity;
 
 /**
- * Questionsanswer Entity
+ * Myjsontest Entity
  *
  * @property int $id
- * @property int $question_id
+ * @property string $title
  * @property int $user_id
+ * @property int $question_id
  * @property int $answerindex
- * @property \Cake\I18n\FrozenTime $created
- * @property \Cake\I18n\FrozenTime $modified
  *
- * @property \App\Model\Entity\Question $question
  * @property \App\Model\Entity\User $user
+ * @property \App\Model\Entity\Question $question
  */
-class Questionsanswer extends Entity
+class Myjsontest extends Entity
 {
 
     /**
@@ -29,12 +28,11 @@ class Questionsanswer extends Entity
      * @var array
      */
     protected $_accessible = [
-        'question_id' => true,
+        'title' => true,
         'user_id' => true,
+        'question_id' => true,
         'answerindex' => true,
-        'created' => true,
-        'modified' => true,
-        'question' => true,
-        'user' => true
+        'user' => true,
+        'question' => true
     ];
 }

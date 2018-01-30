@@ -7,22 +7,20 @@ use Cake\ORM\Table;
 use Cake\Validation\Validator;
 
 /**
- * Questionsanswers Model
+ * Myjsontest Model
  *
- * @property \App\Model\Table\QuestionsTable|\Cake\ORM\Association\BelongsTo $Questions
  * @property \App\Model\Table\UsersTable|\Cake\ORM\Association\BelongsTo $Users
+ * @property \App\Model\Table\QuestionsTable|\Cake\ORM\Association\BelongsTo $Questions
  *
- * @method \App\Model\Entity\Questionsanswer get($primaryKey, $options = [])
- * @method \App\Model\Entity\Questionsanswer newEntity($data = null, array $options = [])
- * @method \App\Model\Entity\Questionsanswer[] newEntities(array $data, array $options = [])
- * @method \App\Model\Entity\Questionsanswer|bool save(\Cake\Datasource\EntityInterface $entity, $options = [])
- * @method \App\Model\Entity\Questionsanswer patchEntity(\Cake\Datasource\EntityInterface $entity, array $data, array $options = [])
- * @method \App\Model\Entity\Questionsanswer[] patchEntities($entities, array $data, array $options = [])
- * @method \App\Model\Entity\Questionsanswer findOrCreate($search, callable $callback = null, $options = [])
- *
- * @mixin \Cake\ORM\Behavior\TimestampBehavior
+ * @method \App\Model\Entity\Myjsontest get($primaryKey, $options = [])
+ * @method \App\Model\Entity\Myjsontest newEntity($data = null, array $options = [])
+ * @method \App\Model\Entity\Myjsontest[] newEntities(array $data, array $options = [])
+ * @method \App\Model\Entity\Myjsontest|bool save(\Cake\Datasource\EntityInterface $entity, $options = [])
+ * @method \App\Model\Entity\Myjsontest patchEntity(\Cake\Datasource\EntityInterface $entity, array $data, array $options = [])
+ * @method \App\Model\Entity\Myjsontest[] patchEntities($entities, array $data, array $options = [])
+ * @method \App\Model\Entity\Myjsontest findOrCreate($search, callable $callback = null, $options = [])
  */
-class QuestionsanswersTable extends Table
+class MyjsontestTable extends Table
 {
 
     /**
@@ -35,18 +33,16 @@ class QuestionsanswersTable extends Table
     {
         parent::initialize($config);
 
-        $this->setTable('questionsanswers');
-        $this->setDisplayField('id');
+        $this->setTable('myjsontest');
+        $this->setDisplayField('title');
         $this->setPrimaryKey('id');
 
-        $this->addBehavior('Timestamp');
-
-        $this->belongsTo('Questions', [
-            'foreignKey' => 'question_id',
-            'joinType' => 'INNER'
-        ]);
         $this->belongsTo('Users', [
             'foreignKey' => 'user_id',
+            'joinType' => 'INNER'
+        ]);
+        $this->belongsTo('Questions', [
+            'foreignKey' => 'question_id',
             'joinType' => 'INNER'
         ]);
     }
@@ -62,6 +58,12 @@ class QuestionsanswersTable extends Table
         $validator
             ->integer('id')
             ->allowEmpty('id', 'create');
+
+        $validator
+            ->scalar('title')
+            ->maxLength('title', 50)
+            ->requirePresence('title', 'create')
+            ->notEmpty('title');
 
         $validator
             ->integer('answerindex')
@@ -80,8 +82,8 @@ class QuestionsanswersTable extends Table
      */
     public function buildRules(RulesChecker $rules)
     {
-        $rules->add($rules->existsIn(['question_id'], 'Questions'));
         $rules->add($rules->existsIn(['user_id'], 'Users'));
+        $rules->add($rules->existsIn(['question_id'], 'Questions'));
 
         return $rules;
     }

@@ -1,13 +1,13 @@
 <?php
 namespace App\Test\TestCase\Controller;
 
-use App\Controller\QuestionsanswersController;
+use App\Controller\MyjsontestController;
 use Cake\TestSuite\IntegrationTestCase;
 
 /**
- * App\Controller\QuestionsanswersController Test Case
+ * App\Controller\MyjsontestController Test Case
  */
-class QuestionsanswersControllerTest extends IntegrationTestCase
+class MyjsontestControllerTest extends IntegrationTestCase
 {
 
     /**
@@ -16,18 +16,18 @@ class QuestionsanswersControllerTest extends IntegrationTestCase
      * @var array
      */
     public $fixtures = [
-        'app.questionsanswers',
-        'app.questions',
-        'app.questions_categories',
+        'app.myjsontest',
         'app.users',
         'app.changelogs',
         'app.jokes',
+        'app.questions',
+        'app.questions_categories',
+        'app.questionstypes',
         'app.questions_answers',
+        'app.quizzes_questions',
         'app.quizzes',
         'app.quizzes_answers',
-        'app.quizzes_results',
-        'app.quizzes_questions',
-        'app.questionstypes'
+        'app.quizzes_results'
     ];
 
     /**

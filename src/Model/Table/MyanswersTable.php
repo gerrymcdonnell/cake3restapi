@@ -7,22 +7,22 @@ use Cake\ORM\Table;
 use Cake\Validation\Validator;
 
 /**
- * Questionsanswers Model
+ * Myanswers Model
  *
  * @property \App\Model\Table\QuestionsTable|\Cake\ORM\Association\BelongsTo $Questions
  * @property \App\Model\Table\UsersTable|\Cake\ORM\Association\BelongsTo $Users
  *
- * @method \App\Model\Entity\Questionsanswer get($primaryKey, $options = [])
- * @method \App\Model\Entity\Questionsanswer newEntity($data = null, array $options = [])
- * @method \App\Model\Entity\Questionsanswer[] newEntities(array $data, array $options = [])
- * @method \App\Model\Entity\Questionsanswer|bool save(\Cake\Datasource\EntityInterface $entity, $options = [])
- * @method \App\Model\Entity\Questionsanswer patchEntity(\Cake\Datasource\EntityInterface $entity, array $data, array $options = [])
- * @method \App\Model\Entity\Questionsanswer[] patchEntities($entities, array $data, array $options = [])
- * @method \App\Model\Entity\Questionsanswer findOrCreate($search, callable $callback = null, $options = [])
+ * @method \App\Model\Entity\Myanswer get($primaryKey, $options = [])
+ * @method \App\Model\Entity\Myanswer newEntity($data = null, array $options = [])
+ * @method \App\Model\Entity\Myanswer[] newEntities(array $data, array $options = [])
+ * @method \App\Model\Entity\Myanswer|bool save(\Cake\Datasource\EntityInterface $entity, $options = [])
+ * @method \App\Model\Entity\Myanswer patchEntity(\Cake\Datasource\EntityInterface $entity, array $data, array $options = [])
+ * @method \App\Model\Entity\Myanswer[] patchEntities($entities, array $data, array $options = [])
+ * @method \App\Model\Entity\Myanswer findOrCreate($search, callable $callback = null, $options = [])
  *
  * @mixin \Cake\ORM\Behavior\TimestampBehavior
  */
-class QuestionsanswersTable extends Table
+class MyanswersTable extends Table
 {
 
     /**
@@ -35,7 +35,7 @@ class QuestionsanswersTable extends Table
     {
         parent::initialize($config);
 
-        $this->setTable('questionsanswers');
+        $this->setTable('myanswers');
         $this->setDisplayField('id');
         $this->setPrimaryKey('id');
 

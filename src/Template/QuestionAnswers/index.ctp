@@ -1,21 +1,21 @@
 <?php
 /**
  * @var \App\View\AppView $this
- * @var \App\Model\Entity\Questionsanswer[]|\Cake\Collection\CollectionInterface $questionsanswers
+ * @var \App\Model\Entity\QuestionAnswer[]|\Cake\Collection\CollectionInterface $questionAnswers
  */
 ?>
 <nav class="large-3 medium-4 columns" id="actions-sidebar">
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('New Questionsanswer'), ['action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('New Question Answer'), ['action' => 'add']) ?></li>
         <li><?= $this->Html->link(__('List Questions'), ['controller' => 'Questions', 'action' => 'index']) ?></li>
         <li><?= $this->Html->link(__('New Question'), ['controller' => 'Questions', 'action' => 'add']) ?></li>
         <li><?= $this->Html->link(__('List Users'), ['controller' => 'Users', 'action' => 'index']) ?></li>
         <li><?= $this->Html->link(__('New User'), ['controller' => 'Users', 'action' => 'add']) ?></li>
     </ul>
 </nav>
-<div class="questionsanswers index large-9 medium-8 columns content">
-    <h3><?= __('Questionsanswers') ?></h3>
+<div class="questionAnswers index large-9 medium-8 columns content">
+    <h3><?= __('Question Answers') ?></h3>
     <table cellpadding="0" cellspacing="0">
         <thead>
             <tr>
@@ -29,18 +29,18 @@
             </tr>
         </thead>
         <tbody>
-            <?php foreach ($questionsanswers as $questionsanswer): ?>
+            <?php foreach ($questionAnswers as $questionAnswer): ?>
             <tr>
-                <td><?= $this->Number->format($questionsanswer->id) ?></td>
-                <td><?= $questionsanswer->has('question') ? $this->Html->link($questionsanswer->question->id, ['controller' => 'Questions', 'action' => 'view', $questionsanswer->question->id]) : '' ?></td>
-                <td><?= $questionsanswer->has('user') ? $this->Html->link($questionsanswer->user->username, ['controller' => 'Users', 'action' => 'view', $questionsanswer->user->id]) : '' ?></td>
-                <td><?= $this->Number->format($questionsanswer->answerindex) ?></td>
-                <td><?= h($questionsanswer->created) ?></td>
-                <td><?= h($questionsanswer->modified) ?></td>
+                <td><?= $this->Number->format($questionAnswer->id) ?></td>
+                <td><?= $questionAnswer->has('question') ? $this->Html->link($questionAnswer->question->id, ['controller' => 'Questions', 'action' => 'view', $questionAnswer->question->id]) : '' ?></td>
+                <td><?= $questionAnswer->has('user') ? $this->Html->link($questionAnswer->user->username, ['controller' => 'Users', 'action' => 'view', $questionAnswer->user->id]) : '' ?></td>
+                <td><?= $this->Number->format($questionAnswer->answerindex) ?></td>
+                <td><?= h($questionAnswer->created) ?></td>
+                <td><?= h($questionAnswer->modified) ?></td>
                 <td class="actions">
-                    <?= $this->Html->link(__('View'), ['action' => 'view', $questionsanswer->id]) ?>
-                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $questionsanswer->id]) ?>
-                    <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $questionsanswer->id], ['confirm' => __('Are you sure you want to delete # {0}?', $questionsanswer->id)]) ?>
+                    <?= $this->Html->link(__('View'), ['action' => 'view', $questionAnswer->id]) ?>
+                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $questionAnswer->id]) ?>
+                    <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $questionAnswer->id], ['confirm' => __('Are you sure you want to delete # {0}?', $questionAnswer->id)]) ?>
                 </td>
             </tr>
             <?php endforeach; ?>
